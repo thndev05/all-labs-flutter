@@ -1,8 +1,9 @@
 # Flutter Labs
 
-## Lab 5 — Xylophone
+## Lab 6 — Quizzler
 
-Ứng dụng đàn Xylophone gồm 7 phím màu. Chạm vào từng phím để phát nốt nhạc.
+Ứng dụng trắc nghiệm Đúng/Sai. Chọn câu trả lời, xem biểu tượng kết quả và
+nhận điểm sau khi hoàn thành toàn bộ câu hỏi.
 
 ### Chạy ứng dụng
 

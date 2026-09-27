@@ -1,11 +1,11 @@
 {
-    "name": "Xylophone",
-    "short_name": "Xylophone",
+    "name": "Quizzler",
+    "short_name": "Quizzler",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#607D8B",
     "theme_color": "#263238",
-    "description": "Lab 5 - Xylophone built with Flutter.",
+    "description": "Lab 6 - Quizzler built with Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
