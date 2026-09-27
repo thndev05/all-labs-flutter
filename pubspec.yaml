@@ -1,5 +1,5 @@
-name: destini
-description: Lab 7 - An interactive branching story built with Flutter.
+name: bmi_calculator
+description: Lab 8 - A BMI calculator built with Flutter.
 publish_to: "none"
 version: 1.0.0+1
 
@@ -17,5 +17,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - images/background.png

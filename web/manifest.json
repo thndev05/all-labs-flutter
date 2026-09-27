@@ -1,11 +1,11 @@
 {
-    "name": "Destini",
-    "short_name": "Destini",
+    "name": "BMI Calculator",
+    "short_name": "BMI Calculator",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#607D8B",
     "theme_color": "#263238",
-    "description": "Lab 7 - Destini built with Flutter.",
+    "description": "Lab 8 - BMI Calculator built with Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,9 +1,9 @@
 # Flutter Labs
 
-## Lab 7 — Destini
+## Lab 8 — BMI Calculator
 
-Ứng dụng truyện tương tác. Mỗi lựa chọn dẫn đến một nhánh truyện và kết thúc
-khác nhau; nhấn **CHƠI LẠI** để quay về đầu câu chuyện.
+Ứng dụng tính chỉ số BMI dựa trên giới tính, chiều cao, cân nặng và tuổi. Kết
+quả hiển thị chỉ số, phân loại và lời khuyên sức khỏe.
 
 ### Chạy ứng dụng
 
