@@ -1,9 +1,8 @@
 # Flutter Labs
 
-## Lab 4 — Magic 8 Ball
+## Lab 5 — Xylophone
 
-Ứng dụng trả lời câu hỏi ngẫu nhiên bằng quả bóng Magic 8 Ball. Nhấn vào quả
-bóng hoặc nút **HỎI MAGIC 8 BALL** để nhận câu trả lời mới.
+Ứng dụng đàn Xylophone gồm 7 phím màu. Chạm vào từng phím để phát nốt nhạc.
 
 ### Chạy ứng dụng
 

@@ -1,4 +1,4 @@
-package com.example.magic_8_ball
+package com.example.xylophone
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,11 +1,11 @@
 {
-    "name": "Magic 8 Ball",
-    "short_name": "Magic 8 Ball",
+    "name": "Xylophone",
+    "short_name": "Xylophone",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#607D8B",
     "theme_color": "#263238",
-    "description": "Lab 4 - Magic 8 Ball built with Flutter.",
+    "description": "Lab 5 - Xylophone built with Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
