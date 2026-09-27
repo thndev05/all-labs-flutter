@@ -1,5 +1,5 @@
-name: bmi_calculator
-description: Lab 8 - A BMI calculator built with Flutter.
+name: clima
+description: Lab 9 - A weather app with city search built with Flutter.
 publish_to: "none"
 version: 1.0.0+1
 
@@ -17,3 +17,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - images/location_background.jpg
+    - images/city_background.jpg
+  fonts:
+    - family: Spartan MB
+      fonts:
+        - asset: fonts/SpartanMB-Black.otf
+          weight: 900

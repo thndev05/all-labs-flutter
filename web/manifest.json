@@ -1,11 +1,11 @@
 {
-    "name": "BMI Calculator",
-    "short_name": "BMI Calculator",
+    "name": "Clima",
+    "short_name": "Clima",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#607D8B",
     "theme_color": "#263238",
-    "description": "Lab 8 - BMI Calculator built with Flutter.",
+    "description": "Lab 9 - Clima built with Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

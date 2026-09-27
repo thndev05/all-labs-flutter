@@ -1,9 +1,9 @@
 # Flutter Labs
 
-## Lab 8 — BMI Calculator
+## Lab 9 — Clima
 
-Ứng dụng tính chỉ số BMI dựa trên giới tính, chiều cao, cân nặng và tuổi. Kết
-quả hiển thị chỉ số, phân loại và lời khuyên sức khỏe.
+Ứng dụng thời tiết cho phép nhập tên thành phố để xem nhiệt độ, biểu tượng và
+lời khuyên phù hợp. Bản demo hiện dùng dữ liệu mẫu để chạy ổn định trên Web.
 
 ### Chạy ứng dụng
 
