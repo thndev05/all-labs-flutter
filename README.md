@@ -1,9 +1,9 @@
 # Flutter Labs
 
-## Lab 6 — Quizzler
+## Lab 7 — Destini
 
-Ứng dụng trắc nghiệm Đúng/Sai. Chọn câu trả lời, xem biểu tượng kết quả và
-nhận điểm sau khi hoàn thành toàn bộ câu hỏi.
+Ứng dụng truyện tương tác. Mỗi lựa chọn dẫn đến một nhánh truyện và kết thúc
+khác nhau; nhấn **CHƠI LẠI** để quay về đầu câu chuyện.
 
 ### Chạy ứng dụng
 

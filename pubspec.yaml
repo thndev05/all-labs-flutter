@@ -1,5 +1,5 @@
-name: quizzler
-description: Lab 6 - A true or false quiz built with Flutter.
+name: destini
+description: Lab 7 - An interactive branching story built with Flutter.
 publish_to: "none"
 version: 1.0.0+1
 
@@ -17,3 +17,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - images/background.png

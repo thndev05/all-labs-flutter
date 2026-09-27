@@ -1,163 +1,131 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const QuizzlerApp());
+import 'story_brain.dart';
 
-class QuizQuestion {
-  const QuizQuestion(this.text, this.answer);
+void main() => runApp(const DestiniApp());
 
-  final String text;
-  final bool answer;
-}
-
-class QuizzlerApp extends StatelessWidget {
-  const QuizzlerApp({super.key});
+class DestiniApp extends StatelessWidget {
+  const DestiniApp({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'Quizzler',
+        title: 'Destini',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(useMaterial3: true),
-        home: const QuizPage(),
+        theme: ThemeData.dark(useMaterial3: true),
+        home: const StoryPage(),
       );
 }
 
-class QuizPage extends StatefulWidget {
-  const QuizPage({super.key, this.questions = defaultQuestions});
+class StoryPage extends StatefulWidget {
+  const StoryPage({super.key, this.storyBrain});
 
-  final List<QuizQuestion> questions;
-
-  static const defaultQuestions = <QuizQuestion>[
-    QuizQuestion('Some cats are actually allergic to humans.', true),
-    QuizQuestion('You can lead a cow down stairs but not up stairs.', false),
-    QuizQuestion(
-        'Approximately one quarter of human bones are in the feet.', true),
-    QuizQuestion("A slug's blood is green.", true),
-    QuizQuestion('Buzz Aldrin’s mother’s maiden name was "Moon".', true),
-    QuizQuestion('It is illegal to pee in the Ocean in Portugal.', true),
-    QuizQuestion(
-        'No piece of square dry paper can be folded in half more than 7 times.',
-        false),
-    QuizQuestion('Google was originally called "Backrub".', true),
-  ];
+  final StoryBrain? storyBrain;
 
   @override
-  State<QuizPage> createState() => _QuizPageState();
+  State<StoryPage> createState() => _StoryPageState();
 }
 
-class _QuizPageState extends State<QuizPage> {
-  var _questionIndex = 0;
-  final List<bool> _answers = [];
+class _StoryPageState extends State<StoryPage> {
+  late final StoryBrain _storyBrain;
 
-  QuizQuestion get _question => widget.questions[_questionIndex];
-
-  void _answer(bool answer) {
-    final isCorrect = answer == _question.answer;
-    setState(() {
-      _answers.add(isCorrect);
-      if (_questionIndex < widget.questions.length - 1) {
-        _questionIndex++;
-      } else {
-        _showResult();
-      }
-    });
+  @override
+  void initState() {
+    super.initState();
+    _storyBrain = widget.storyBrain ?? StoryBrain();
   }
 
-  void _showResult() {
-    final score = _answers.where((answer) => answer).length;
-    showDialog<void>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Hoàn thành!'),
-        content:
-            Text('Bạn trả lời đúng $score/${widget.questions.length} câu.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              setState(() {
-                _questionIndex = 0;
-                _answers.clear();
-              });
-            },
-            child: const Text('Làm lại'),
-          ),
-        ],
-      ),
-    );
+  void _choose(int choice) {
+    setState(() => _storyBrain.choose(choice));
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.grey.shade900,
-        appBar: AppBar(
-          toolbarHeight: 72,
-          title: const Padding(
-            padding: EdgeInsets.only(top: 16),
-            child: Text('Quizzler'),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
+  Widget build(BuildContext context) {
+    final story = _storyBrain.currentStory;
+
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 72,
+        title: const Padding(
+          padding: EdgeInsets.only(top: 16),
+          child: Text('Destini'),
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 32, 20, 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  'Câu ${_questionIndex + 1}/${widget.questions.length}',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white70, fontSize: 16),
-                ),
-                const SizedBox(height: 20),
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      _question.text,
-                      key: const Key('question-text'),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white, fontSize: 26),
+        centerTitle: true,
+        backgroundColor: Colors.black87,
+        foregroundColor: Colors.white,
+      ),
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: Colors.black.withValues(alpha: 0.32),
+            padding: const EdgeInsets.fromLTRB(20, 32, 20, 24),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 720),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: SingleChildScrollView(
+                          child: Text(
+                            story.title,
+                            key: const Key('story-text'),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              height: 1.45,
+                              fontWeight: FontWeight.w500,
+                              shadows: [
+                                Shadow(blurRadius: 8, color: Colors.black)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    _ChoiceButton(
+                      key: const Key('choice-1'),
+                      label: story.firstChoice,
+                      color:
+                          story.isEnding ? Colors.green : Colors.red.shade700,
+                      onPressed: () => _choose(1),
+                    ),
+                    if (story.secondChoice != null) ...[
+                      const SizedBox(height: 16),
+                      _ChoiceButton(
+                        key: const Key('choice-2'),
+                        label: story.secondChoice!,
+                        color: Colors.blue.shade700,
+                        onPressed: () => _choose(2),
+                      ),
+                    ],
+                  ],
                 ),
-                _AnswerButton(
-                  key: const Key('true-button'),
-                  label: 'ĐÚNG',
-                  color: Colors.green,
-                  onPressed: () => _answer(true),
-                ),
-                const SizedBox(height: 12),
-                _AnswerButton(
-                  key: const Key('false-button'),
-                  label: 'SAI',
-                  color: Colors.red,
-                  onPressed: () => _answer(false),
-                ),
-                const SizedBox(height: 16),
-                Wrap(
-                  key: const Key('score-row'),
-                  spacing: 4,
-                  children: _answers
-                      .map((correct) => Icon(
-                            correct ? Icons.check : Icons.close,
-                            color: correct ? Colors.green : Colors.red,
-                          ))
-                      .toList(),
-                ),
-              ],
+              ),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
-class _AnswerButton extends StatelessWidget {
-  const _AnswerButton(
-      {super.key,
-      required this.label,
-      required this.color,
-      required this.onPressed});
+class _ChoiceButton extends StatelessWidget {
+  const _ChoiceButton({
+    super.key,
+    required this.label,
+    required this.color,
+    required this.onPressed,
+  });
 
   final String label;
   final Color color;
@@ -169,8 +137,10 @@ class _AnswerButton extends StatelessWidget {
         style: FilledButton.styleFrom(
           backgroundColor: color,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(vertical: 18),
+          minimumSize: const Size.fromHeight(72),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         ),
-        child: Text(label, style: const TextStyle(fontSize: 18)),
+        child: Text(label,
+            textAlign: TextAlign.center, style: const TextStyle(fontSize: 17)),
       );
 }

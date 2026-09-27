@@ -1,11 +1,11 @@
 {
-    "name": "Quizzler",
-    "short_name": "Quizzler",
+    "name": "Destini",
+    "short_name": "Destini",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#607D8B",
     "theme_color": "#263238",
-    "description": "Lab 6 - Quizzler built with Flutter.",
+    "description": "Lab 7 - Destini built with Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

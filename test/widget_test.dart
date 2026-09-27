@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quizzler/main.dart';
+import 'package:destini/main.dart';
 
 void main() {
-  testWidgets('moves to the next question and records the answer',
-      (tester) async {
-    const questions = [
-      QuizQuestion('Question one?', true),
-      QuizQuestion('Question two?', false),
-    ];
-    await tester
-        .pumpWidget(const MaterialApp(home: QuizPage(questions: questions)));
+  testWidgets('updates the story after selecting a choice', (tester) async {
+    await tester.pumpWidget(const DestiniApp());
 
-    expect(find.text('Question one?'), findsOneWidget);
-    await tester.tap(find.byKey(const Key('true-button')));
+    final firstStory =
+        tester.widget<Text>(find.byKey(const Key('story-text'))).data;
+    await tester.tap(find.byKey(const Key('choice-2')));
     await tester.pump();
-    expect(find.text('Question two?'), findsOneWidget);
-    expect(find.byIcon(Icons.check), findsOneWidget);
+    final nextStory =
+        tester.widget<Text>(find.byKey(const Key('story-text'))).data;
+
+    expect(nextStory, isNot(firstStory));
+    expect(find.byKey(const Key('choice-2')), findsOneWidget);
   });
 }
