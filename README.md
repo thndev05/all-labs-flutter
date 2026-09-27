@@ -2,37 +2,31 @@
 
 ## Lab 1 — I Am Rich
 
-This branch contains the first lab from the Flutter Bootcamp reference
-repository (`chapter_1/i_am_rich`). The project includes current Flutter
-runners for Android, iOS and Web. It demonstrates the smallest useful Flutter
-app:
+Đây là ứng dụng Flutter Lab 1 với giao diện **I Am Rich**, hỗ trợ Android,
+iOS và Web. Ứng dụng minh họa các thành phần Flutter cơ bản:
 
-- `MaterialApp` provides the application shell and theme.
-- `Scaffold` supplies the page layout.
-- `AppBar` displays the **I Am Rich** title.
-- `Image.asset` loads the diamond image from `images/diamond.png`.
+- `MaterialApp` quản lý cấu hình và giao diện chung của ứng dụng.
+- `Scaffold` tạo bố cục màn hình.
+- `AppBar` hiển thị tiêu đề **I Am Rich**.
+- `Image.asset` tải ảnh kim cương từ `images/diamond.png`.
 
-## Demo on the Web
+## Chạy trên trình duyệt
 
-The project includes a web target, so no phone or emulator is required. With
-Flutter installed, run it in Chrome from this directory:
+Không cần điện thoại hoặc máy ảo. Sau khi cài Flutter, chạy các lệnh sau để
+mở ứng dụng bằng Chrome:
 
 ```bash
 flutter pub get
 flutter run -d chrome
 ```
 
-Use `flutter run -d edge` instead if you prefer Microsoft Edge. While the app
-is running, press `r` in the terminal for hot reload and `q` to stop it.
+Để sử dụng Microsoft Edge, thay lệnh cuối bằng `flutter run -d edge`. Trong
+khi ứng dụng đang chạy, nhấn `r` để hot reload và `q` để dừng.
 
-The `android/` and `ios/` directories are retained so this remains a complete
-cross-platform Flutter project; a phone or emulator is not needed for the web
-demo.
+## Kiểm thử
 
-Run the widget test with:
+Chạy widget test bằng lệnh:
 
 ```bash
 flutter test
 ```
-
-The original reference implementation is kept in `../flutter-bootcamp`.
