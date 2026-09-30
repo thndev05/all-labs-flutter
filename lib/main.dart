@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'services/weather_service.dart';
 
+const _weatherApiKey = String.fromEnvironment('OPENWEATHER_API_KEY');
+
 void main() => runApp(const ClimaApp());
 
 class ClimaApp extends StatelessWidget {
@@ -30,7 +32,10 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  late final WeatherService _service = widget.service ?? DemoWeatherService();
+  late final WeatherService _service = widget.service ??
+      (_weatherApiKey.isEmpty
+          ? DemoWeatherService()
+          : OpenWeatherService(apiKey: _weatherApiKey));
   final _cityController = TextEditingController(text: 'Đà Nẵng');
   WeatherData? _weather;
   String? _error;

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 class WeatherData {
   const WeatherData({
     required this.city,
@@ -42,6 +46,32 @@ class WeatherData {
 
 abstract interface class WeatherService {
   Future<WeatherData> fetchCity(String city);
+}
+
+class OpenWeatherService implements WeatherService {
+  OpenWeatherService({required this.apiKey, http.Client? client})
+      : _client = client ?? http.Client();
+
+  final String apiKey;
+  final http.Client _client;
+
+  @override
+  Future<WeatherData> fetchCity(String city) async {
+    final uri = Uri.https('api.openweathermap.org', '/data/2.5/weather', {
+      'q': city,
+      'appid': apiKey,
+      'units': 'metric',
+      'lang': 'en',
+    });
+    final response = await _client.get(uri);
+
+    if (response.statusCode != 200) {
+      throw Exception('Weather API request failed: ${response.statusCode}');
+    }
+
+    return WeatherData.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>);
+  }
 }
 
 class DemoWeatherService implements WeatherService {
